@@ -1,0 +1,11 @@
+import os
+
+API_ID = int(os.getenv("API_ID", "3293775"))
+API_HASH = os.getenv("API_HASH", "b32b963ede690fb1f3c1c4c493be719")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "9284177853:AAGzszrb_RZATtQptBdIxI-9aqk8oXCanE8")
+OWNER_ID = int(os.getenv("OWNER_ID", "8538619965"))
+STRING_SESSION = os.getenv(
+    "STRING_SESSION",
+    "BQCZzqEAfAkR821RlDK4CK7pldzS90Mu4ADmyGmeRqD-yyX5FMPtZUqbKRzI15YdL0wXU3a2CeVuoLVi9x_DrzvQL-YctLi0swsyKrmpk3WARdy6ue6ZUMvNxqDyGOU1Y1dgX0MDUgMqqdKl1bw-Tl_EaVtaxkdVB1Au-1kbX1qT91_69vfns8T7Vs8nLgoiReV2WoOFQQRGioroVzbsk1IkfrzDOCEl0WIviRp895wtHwz7wFSvocUpHIVQBxFt2tQgDndicya3EZ2Ab3nNetV3bVyWSP_g8Hy6mFqn3MesSh2MBo7ftiMJxDMJgIt7WQxhM29Pnp0_DkfQn3DxchCEfipE8wAAAAHvR-GLAA"
+)
+RECORD_GROUP = int(os.getenv("RECORD_GROUP", "-1004426372558"))
