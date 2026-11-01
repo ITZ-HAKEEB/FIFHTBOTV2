@@ -1,6 +1,6 @@
 pyrogram==2.0.106
 tgcrypto
-pytgcalls==3.0.0.dev24
+py-tgcalls==2.3.3
 numpy
 scipy
 aiofiles
