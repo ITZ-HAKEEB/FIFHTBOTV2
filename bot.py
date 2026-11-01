@@ -905,40 +905,78 @@ async def cmd_userlist(client, message):
         await message.reply(f"❌ **Error:** `{str(e)}`")
 
 # ==================== BUTTON HELPERS ====================
+
 class ButtonStyle:
     PRIMARY = "bg_primary"
     SUCCESS = "bg_success"
     DANGER = "bg_danger"
 
-def styled_button(text: str, callback_data: str = None, url: str = None, style: str = ButtonStyle.PRIMARY) -> InlineKeyboardButton:
+
+def styled_button(
+    text: str,
+    callback_data: str = None,
+    url: str = None,
+    style: str = ButtonStyle.PRIMARY
+) -> InlineKeyboardButton:
+
+    # Create standard Telegram inline buttons
     if url:
-        btn = InlineKeyboardButton(text=text, url=url)
-    else:
-        btn = InlineKeyboardButton(text=text, callback_data=callback_data)
-    btn.__dict__["style"] = style
-    return btn
+        return InlineKeyboardButton(
+            text=text,
+            url=url
+        )
+
+    return InlineKeyboardButton(
+        text=text,
+        callback_data=callback_data
+    )
+
 
 def build_keyboard(buttons: list, row_width: int = 2) -> InlineKeyboardMarkup:
-    rows, row = [], []
+
+    rows = []
+    row = []
+
     for btn in buttons:
+
         if len(btn) == 4:
             text, callback, style, url = btn
-            if style not in [ButtonStyle.PRIMARY, ButtonStyle.SUCCESS, ButtonStyle.DANGER]:
-                style = ButtonStyle.PRIMARY
-            row.append(styled_button(text, callback_data=callback, url=url, style=style))
+
         elif len(btn) == 3:
             text, callback, style = btn
-            if style not in [ButtonStyle.PRIMARY, ButtonStyle.SUCCESS, ButtonStyle.DANGER]:
-                style = ButtonStyle.PRIMARY
-            row.append(styled_button(text, callback_data=callback, style=style))
+            url = None
+
         else:
             text, callback = btn[0], btn[1]
-            row.append(styled_button(text, callback_data=callback, style=ButtonStyle.PRIMARY))
+            style = ButtonStyle.PRIMARY
+            url = None
+
+        # Validate button style
+        if style not in (
+            ButtonStyle.PRIMARY,
+            ButtonStyle.SUCCESS,
+            ButtonStyle.DANGER
+        ):
+            style = ButtonStyle.PRIMARY
+
+        # Create button without assigning an invalid style object
+        row.append(
+            styled_button(
+                text=text,
+                callback_data=callback,
+                url=url,
+                style=style
+            )
+        )
+
+        # Arrange buttons into rows
         if len(row) >= row_width:
             rows.append(row)
             row = []
+
     if row:
         rows.append(row)
+
     return InlineKeyboardMarkup(rows)
 
 # ==================== CALLBACK HANDLERS ====================
