@@ -1,4 +1,5 @@
-py-tgcalls[pyrogram]==2.3.3
+py-tgcalls==2.3.3
+pyrogrammod==2.4.1
 tgcrypto
 numpy
 scipy
